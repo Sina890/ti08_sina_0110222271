@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #948661;
+}
+
+.foto{
+    width: 200px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
