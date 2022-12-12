@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #a2d5eb, #84d0e9, #3eb7eb);
+            font-family: "poppins", sans-serif;
+            text-align: center;
+            width: 350px;
+            margin: 9vh auto 0 auto;
+            padding: 8px;
+            color: #381f16;
+        }
+
+        .container {
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .container input {
+            width: 300px;
+        }
+
+        .span {
+            color: #fffaf8;
+        }
+    </style>
+</head>
+
+<body> 
+    <h2>Registrasi Pemesanan Tiket</h2>
+
+    <div class="container">     
+        <label>Nama Pelanggan</label><br>
+        <input type="text" id="namaPelanggan" maxlength="30">
+        <br><span class="span" id="errorNama"></span><br>
+
+        <label>Email</label><br>
+        <input type="email" name="" id="email" placeholder="">
+        <br><span class="span" id="errorEmail"></span><br>
+
+        <label>Jam Keberangkatan</label><br>
+        <input type="time" id="jamKeberangkatan">
+        <br><span class="span" id="errorJam"></span><br>
+
+        <label>Tujuan Keberangkatan</label><br>
+        <input type="text" id="tujuanKeberangkatan">
+        <br><span class="span" id="errorTujuan"></span><br>
+
+        <label for="jumlahTiket">Jumlah Tiket</label><br>
+        <input type="number" name="" id="jumlahTiket">
+        <br><span class="span" id="errorJumlah"></span><br>
+
+        <button type="submit" id="register" onclick="registrasi()">Pesan Sekarang</button> 
+    </div>
+
+    <br>
+    <hr>
+    
+    <h2 id="judul"></h2>
+    <div class="container">        
+        <span id="namaValid"></span><br>
+        <span id="emailValid"></span><br>
+        <span id="jamValid"></span><br>
+        <span id="tujuanValid"></span> <br>
+        <span id="jumlahValid"></span> <br>
+    </div>
+   
+   <script>
+        let nama = document.getElementById("namaPelanggan")
+        let email = document.getElementById("email")
+        let jam = document.getElementById("jamKeberangkatan")
+        let tujuan = document.getElementById("tujuanKeberangkatan")
+        let jumlah = document.getElementById("jumlahTiket")
+
+        function registrasi(){ 
+            
+            // Cek nama pelanggan
+            if(nama.value == ""){
+                document.getElementById("errorNama").innerHTML = "Nama tidak boleh kosong"
+            }else if(nama.value.length >= 30){
+                 document.getElementById("errorNama").innerHTML = "Maksimal panjang karakter adalah 30"
+            } else  {
+                document.getElementById("namaValid").innerHTML = "Nama Pelanggan : "+namaPelanggan.value
+                document.getElementById("judul").innerHTML = "Data Pelanggan"
+                document.getElementById("errorNama").innerHTML = ""
+            }
+
+            // Cek email
+            if(email.value == ""){
+                document.getElementById("errorEmail").innerHTML = "Email tidak boleh kosong"
+            } else if(/@/.test(email.value)){
+                document.getElementById("emailValid").innerHTML = "Email : "+email.value
+                document.getElementById("judul").innerHTML = "Data Pelanggan"
+                document.getElementById("errorEmail").innerHTML = ""
+            } else{
+                document.getElementById("errorEmail").innerHTML = "Format Email tidak valid"
+            }
+
+            // cek jam keberangkatan
+            if(jam.value == ""){
+                document.getElementById("errorJam").innerHTML = "Jam tidak boleh kosong"
+            } else if(jam.value <= "23.59"){
+                document.getElementById("jamValid").innerHTML = "Jam Keberangkatan : "+jamKeberangkatan.value
+                document.getElementById("errorJam").innerHTML = ""
+                document.getElementById("judul").innerHTML = "Data Pelanggan"
+            } else {
+                document.getElementById("errorJam").innerHTML = "Nilai harus diantara 00.00 - 23.59"
+            }
+
+            // Cek Tujuan keberangkatan
+            if(tujuan.value == ""){
+                document.getElementById("errorTujuan").innerHTML = "Tujuan tidak boleh kosong"
+            } else {
+                document.getElementById("tujuanValid").innerHTML = "Tujuan Keberangkatan : "+tujuanKeberangkatan.value
+                document.getElementById("errorTujuan").innerHTML = ""
+                document.getElementById("judul").innerHTML = "Data Pelanggan"
+            }
+
+            // Cek Jumlah Tiket
+            if (jumlah.value == ""){
+                document.getElementById("errorJumlah").innerHTML = "Jumlah tiket tidak boleh kosong"
+            }
+            else if(jumlah.value <= 10 && jumlah.value > 0){
+                document.getElementById("jumlahValid").innerHTML = "Jumlah Tiket : "+jumlahTiket.value
+                document.getElementById("errorJumlah").innerHTML = ""
+                document.getElementById("judul").innerHTML = "Data Pelanggan"
+            } else {
+                document.getElementById("errorJumlah").innerHTML = "Jumlah tiket hanya 1 - 10"
+            }
+        }
+    </script>
+</body>
+</html>
